@@ -1,0 +1,17 @@
+-xc
+-std=gnu11
+--target=arm-none-eabi
+-mcpu=cortex-m7
+-mthumb
+-mfloat-abi=hard
+-mfpu=fpv5-d16
+-DDEBUG
+-DUSE_HAL_DRIVER
+-DUSE_PWR_LDO_SUPPLY
+-DSTM32H723xx
+-ICore/Inc
+-IDrivers/STM32H7xx_HAL_Driver/Inc
+-IDrivers/STM32H7xx_HAL_Driver/Inc/Legacy
+-IDrivers/CMSIS/Device/ST/STM32H7xx/Include
+-IDrivers/CMSIS/Include
+-isystem/usr/lib/arm-none-eabi/include

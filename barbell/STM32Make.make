@@ -97,10 +97,14 @@ Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr_ex.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc_ex.c \
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c \
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim_ex.c \
 Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart.c \
-Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c
+Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c \
+Drivers/User/SPI/Src/spi_driver.c \
+Drivers/User/SPI/Src/spi_imu.c
 
 
 CXX_SOURCES = \
@@ -199,7 +203,8 @@ C_INCLUDES =  \
 -IDrivers/CMSIS/Device/ST/STM32H7xx/Include \
 -IDrivers/CMSIS/Include \
 -IDrivers/STM32H7xx_HAL_Driver/Inc \
--IDrivers/STM32H7xx_HAL_Driver/Inc/Legacy
+-IDrivers/STM32H7xx_HAL_Driver/Inc/Legacy \
+-IDrivers/User/SPI/Inc
 
 
 
@@ -349,6 +354,22 @@ clean:
 # custom makefile rules
 #######################################
 
+
+
+#######################################
+# compile_flags.txt
+#######################################
+compile_flags.txt: STM32Make.make
+	@printf "%s\n" -xc -std=gnu11 --target=arm-none-eabi $(MCU) -DDEBUG $(C_DEFS) $(C_INCLUDES) -isystem/usr/lib/arm-none-eabi/include > $@
+      
+
+
+#######################################
+# all
+#######################################
+all: compile_flags.txt
+	@:
+      
 	
 #######################################
 # dependencies

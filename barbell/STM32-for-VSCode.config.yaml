@@ -76,9 +76,7 @@ excludes:
 includeDirectories: 
   - Inc/**
   - Core/Inc/**
-  - Core/Lib/**
-  - Src/**
-  - Core/Src/**
+  - Drivers/User/**
   - Core/Lib/**
 
 
@@ -91,6 +89,7 @@ sourceFiles:
   - Src/**
   - Core/Src/**
   - Core/Lib/**
+  - Drivers/User/**
 
 
 # When no makefile is present it will show a warning pop-up.
@@ -101,6 +100,15 @@ suppressMakefileWarning: false
 # Here custom makefile rules can be added to the STM32Make.make file
 # an example of how this can be used is commented out below.
 customMakefileRules:
+  # Regenerate clangd's compile_flags.txt from the makefile's include/define lists
+  # whenever STM32Make.make changes, so new driver folders are picked up automatically.
+  - command: compile_flags.txt
+    dependsOn: STM32Make.make
+    rule: '@printf "%s\n" -xc -std=gnu11 --target=arm-none-eabi $(MCU) -DDEBUG $(C_DEFS) $(C_INCLUDES) -isystem/usr/lib/arm-none-eabi/include > $@'
+  # Hook the above into the default build (all has no recipe of its own, so this just adds a prerequisite).
+  - command: all
+    dependsOn: compile_flags.txt
+    rule: '@:'
 # - command: sayhello
 #   rule: echo "hello"
 #   dependsOn: $(BUILD_DIR)/$(TARGET).elf # can be left out    

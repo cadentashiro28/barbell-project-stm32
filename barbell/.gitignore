@@ -1,3 +1,4 @@
 .stm32env
 build/
-cmake
+# CubeMX regenerates this on every "Generate Code"; the build uses STM32Make.make
+/Makefile

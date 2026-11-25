@@ -18,3 +18,8 @@ Function parameters would get too large (data ptr, size, timeout, cs port + pin,
 struct is a nice way to keep related data together
 HAL_SPI calls have enough overhead to not manually delay between CS assert and read.
 In other words we won't violate t_setup = 5ns
+
+Bug that caught me
+Was shifting write enable bit (bit 0) too far, used (1 << 8), actually (1 << 7).
+Remember that you write on cycle 1, response 1 is garbage, collect response on next sample cycle.
+tx[0] = write command, tx[1] nothing, rx[0] dismiss, rx[1] = response

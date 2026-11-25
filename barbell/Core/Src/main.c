@@ -99,7 +99,8 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  printf("Hello FK723M1-ZGT6!\n\r");
+  printf("Hello FK723M1-ZGT6!\r\n");
+  uint32_t n = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -109,6 +110,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
   }
   /* USER CODE END 3 */
 }

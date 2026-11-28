@@ -123,7 +123,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    spi_imu_who_am_i_test(&spi_imu_dev);
+    imu_who_am_i_test(&spi_imu_dev);
     HAL_Delay(500);
   }
   /* USER CODE END 3 */

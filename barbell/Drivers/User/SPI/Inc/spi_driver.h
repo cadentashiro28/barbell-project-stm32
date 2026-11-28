@@ -10,6 +10,7 @@ typedef struct {
     uint16_t cs_pin;
 } spi_device_t;
 
-HAL_StatusTypeDef spi_transfer(spi_device_t *dev, uint8_t *tx, uint8_t *rx, uint16_t len);
+HAL_StatusTypeDef spi_read_reg(spi_device_t *dev, uint8_t address, uint8_t *rx_data);
+HAL_StatusTypeDef spi_write_reg(spi_device_t *dev, uint8_t address, uint8_t val );
 
 #endif
